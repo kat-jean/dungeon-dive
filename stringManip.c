@@ -24,18 +24,30 @@
     return finalVersion;
 }
 
-// returns a newly allocated substring from index start to end 
-char *str_cut(char *str, int start, int end){
-    if (str == NULL || start < 0 || end < start){
-        return NULL;
-    }
+    // returns an allocated substring from index start to end 
+    char *str_cut(char *str, int start, int end){
+        if (str == NULL || start < 0 || end < start){
+            return NULL;
+        }
 
-    int len = strlen(str);
-    if (start >= len){
-        return NULL;
-    }
-    if (end >= len){
-        end = len - 1;
-    }
+        int len = strlen(str);
+        if (start >= len){
+            return NULL;
+        }
+        if (end >= len){
+            end = len - 1;
+        }
 
+    // calculate substring length and allocate memory
+        int subLen = end - start + 1;
+        char *sub = malloc(sizeof(char) * (subLen + 1));
+        if (sub == NULL) {
+            return NULL;
+       }
+
+       // copy the slice and null-terminate it
+       strncpy(sub, str + start, subLen);
+       sub[subLen] = '\0';
+
+        return sub;
 }
