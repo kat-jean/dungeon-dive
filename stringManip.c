@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include "stringManip.h"
 
 // function from class... removes excess whitespace from a string
     char* trim(char *strToTrim){
