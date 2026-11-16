@@ -113,3 +113,4 @@ Room* readRoomFile(char *fileName, int *roomCount) {
     // store the final room count in the pointer passed in and return the array
     *roomCount = count;
     return rooms;
+}
