@@ -39,3 +39,12 @@ void printDungeon(Room *startRoom) {
         current = current>east;
     }
 }
+// walks through the dungeon linked list and frees every room node
+void deleteDungeon(Room *startRoom) {
+    Room *current = startRoom;
+    while (current != NULL) {
+        Room *nextRoom = current->east;
+        free(current);
+        current = nextRoom;
+    }
+}
