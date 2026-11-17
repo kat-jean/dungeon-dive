@@ -36,7 +36,7 @@ void printDungeon(Room *startRoom) {
     Room *current = startRoom;
     while (current != NULL) {
         printf("Room %s: %s\n", current->code, current->name);
-        current = current>east;
+        current = current->east;
     }
 }
 // walks through the dungeon linked list and frees every room node
@@ -47,4 +47,32 @@ void deleteDungeon(Room *startRoom) {
         free(current);
         current = nextRoom;
     }
+}
+
+int main(int argc, char *argv[]) {
+    // seed the random number generator for createDungeon
+    srand(time(NULL));
+
+    // create the room array from the file
+    int roomCount = 0;
+    Room *rooms = readRoomFile(argv[1], &roomCount);
+
+    // ask the user for the size of the dungeon
+    char inputBuffer[100];
+    printf("Enter the size of the dungeon to create: ");
+    if (fgets(inputBuffer, sizeof(inputBuffer), stdin) == NULL) {
+        free(rooms);
+        return 1;
+    }
+    int dungeonSize = atoi(inputBuffer);
+
+    // create, print, and delete the dungeon
+    Room *dungeonStart = createDungeon(rooms, roomCount, dungeonSize);
+    printDungeon(dungeonStart);
+    deleteDungeon(dungeonStart);
+
+    // free the dynamically allocated room template array
+    free(rooms);
+
+    return 0;
 }
