@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include "roomManip.h"
 #include "stringManip.h"
-
 // takes a pointer to a room and returns a copy of that room
 Room* roomCreate(Room *sourceRoom) {
     if (sourceRoom == NULL) {
