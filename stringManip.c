@@ -5,7 +5,7 @@
 #include "stringManip.h"
 
 // function from class... removes excess whitespace from a string
-    char* trim(char *strToTrim){
+    char* str_trim(char *strToTrim){
     int strSize = strlen(strToTrim);
 
     char *endPtr = strToTrim + strSize - 1;
